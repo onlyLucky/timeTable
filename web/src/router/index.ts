@@ -19,6 +19,7 @@ const router = createRouter({
 // This will update routes at runtime without reloading the page
 if (import.meta.hot) {
   handleHotUpdate(router)
+  console.log('routes:', routes)
 }
 
 router.beforeEach(async (to: EnhancedRouteLocation, _from, next) => {

@@ -16,6 +16,10 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { createViteVConsole } from './vconsole'
 
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+
 export function createVitePlugins() {
   return [
     // https://github.com/posva/unplugin-vue-router
@@ -36,9 +40,21 @@ export function createVitePlugins() {
     // https://github.com/antfu/unplugin-vue-components
     Components({
       extensions: ['vue'],
-      resolvers: [VantResolver()],
+      resolvers: [
+        VantResolver(),
+        ElementPlusResolver(),
+        // 自动注册图标组件
+        IconsResolver({
+          // 修改Icon组件前缀，不设置则默认为i,禁用则设置为false
+          prefix: 'icon',
+        }),
+      ],
       include: [/\.vue$/, /\.vue\?vue/],
       dts: 'src/types/components.d.ts',
+    }),
+    // Icons图标自动下载
+    Icons({
+      autoInstall: true,
     }),
 
     // https://github.com/antfu/unplugin-auto-import
@@ -64,7 +80,11 @@ export function createVitePlugins() {
       dirs: [
         'src/composables',
       ],
-      resolvers: [VantResolver()],
+      resolvers: [
+        VantResolver(),
+        ElementPlusResolver(),
+        IconsResolver({ enabledCollections: ['ep'] }), // 启用 Element Plus 图标集
+      ],
     }),
 
     // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
