@@ -41,15 +41,16 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         plugins: [
           autoprefixer(),
           // https://github.com/wswmsword/postcss-mobile-forever
-          viewport({
+          // 移动窗口固定适配
+          /* viewport({
             appSelector: '#app',
-            viewportWidth: 375,
-            maxDisplayWidth: 600,
+            // viewportWidth: 375,
+            // maxDisplayWidth: 600,
             rootContainingBlockSelectorList: [
               'van-tabbar',
               'van-popup',
             ],
-          }),
+          }), */
         ],
       },
     },
