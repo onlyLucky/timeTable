@@ -38,21 +38,6 @@ const menuItems = computed(() => ([
   { title: t('menus.keepAlive'), route: 'keepalive' },
   { title: t('menus.404Demo'), route: 'unknown' },
 ]))
-
-const activities = [
-  {
-    content: 'Event start',
-    timestamp: '2018-04-15',
-  },
-  {
-    content: 'Approved',
-    timestamp: '2018-04-13',
-  },
-  {
-    content: 'Success',
-    timestamp: '2018-04-11',
-  },
-]
 </script>
 
 <template>
@@ -76,21 +61,6 @@ const activities = [
       <VanCell :title="item.title" :to="item.route" is-link />
     </template>
   </VanCellGroup>
-
-  <el-button>123</el-button>
-  <el-timeline style="max-width: 600px">
-    <el-timeline-item
-      v-for="(activity, index) in activities"
-      :key="index"
-      :timestamp="activity.timestamp"
-    >
-      {{ activity.content }}
-    </el-timeline-item>
-  </el-timeline>
-  <el-icon size="24" color="pink">
-    <icon-ep-edit />
-  </el-icon>
-
   <van-popup v-model:show="showLanguagePicker" position="bottom">
     <van-picker
       v-model="languageValues"

@@ -77,6 +77,7 @@ An mobile web apps template based on the Vue 3 ecosystem.
 - [Vant](https://github.com/youzan/vant) - 移动端 Vue 组件库
   - [`vant-touch-emulator`](https://github.com/youzan/vant/tree/main/packages/vant-touch-emulator) - 在桌面端上模拟移动端 touch 事件
   - [`vant-use`](https://github.com/youzan/vant/tree/main/packages/vant-use) - Vant 内置的组合式 API
+- [element plus](https://element-plus.org/zh-CN/) - 基于 Vue 3，面向设计师和开发者的组件库
 
 ### 插件
 
@@ -133,17 +134,33 @@ cd my-mobile-app
 pnpm i # 如果你没装过 pnpm, 可以先运行: npm install -g pnpm
 ```
 
-## 清单
+## 应用需求
 
-使用此模板时，请尝试按照清单正确更新您自己的信息
+### 20241007
 
-- [ ] 在 `LICENSE` 中改变作者名
-- [ ] 在 `index.html` 中改变标题
-- [ ] 在 `vite.config.ts` 更改主机名
-- [ ] 在 `public` 目录下改变favicon
-- [ ] 整理 README 并删除路由
+1. 整理代码模版（基础页面，底部菜单，顶部navbar组件可以适当调整）。
+2. 首页基础功能
+    - 当前日期时间（角标展示总任务，已经结束任务数）
+    - 切换时间表模式功能（点击菜单选择）
+    - 添加任务入口（跳转新增任务界面）
+    - 更多功能（菜单点击）搜索任务，跳转日期，备份，设置。
+    - 今天日程任务（当前时间节点的即将要做的事情）
+    - 历史今天，左滑右滑可以查看（可以展示图片，点击进入详情）
+    - 跳转今天
+    - 预留广告位
+3. 新增任务日程页面
+    - 当前日期时间
+    - 切换时间表模式功能
+    - 添加任务入口
+4. 设置
+    - 功能设置 导入（方式）、课程表设置、周期任务设置
+    - 提醒设置 任务是否提示、提前多久提示、节日祝福提醒、默认全天提醒时间
+    - 其他设置 是否显示农历、是否显示节日、是否显示取消任务、关于我们
+5. 优化个性化公共组件（后续）
 
-紧接着, 享受吧 :)
+## 开发日志
+### 20241007
+1. 调整首页页面多余内容
 
 ## 使用
 
@@ -168,4 +185,3 @@ pnpm build
 ### 部署到 Netlify
 
 前往 [Netlify](https://app.netlify.com/start) 并选择你的仓库, 一路 `OK` 下去，稍等一下后，你的应用将被创建。
-
