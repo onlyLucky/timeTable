@@ -5,11 +5,11 @@ import useRouteCache from '@/stores/modules/routeCache'
 import useAutoThemeSwitcher from '@/hooks/useAutoThemeSwitcher'
 
 useHead({
-  title: 'Vue3 Vant Mobile',
+  title: '我的智能课程表任务助手 - TimeTable',
   meta: [
     {
       name: 'description',
-      content: 'Vue + Vite H5 Starter Template',
+      content: '用TimeTable定制课程表任务，让学习计划变得简单有趣。',
     },
     {
       name: 'theme-color',
@@ -41,7 +41,7 @@ onMounted(() => {
 
 <template>
   <VanConfigProvider :theme="mode">
-    <NavBar />
+    <!-- <NavBar /> -->
     <router-view v-slot="{ Component, route }">
       <section class="app-wrapper">
         <keep-alive :include="keepAliveRouteNames">
@@ -49,7 +49,7 @@ onMounted(() => {
         </keep-alive>
       </section>
     </router-view>
-    <TabBar />
+    <!-- <TabBar /> -->
   </VanConfigProvider>
 </template>
 

@@ -15,6 +15,7 @@ watch(
 )
 
 function toggle() {
+  console.log(isDark, 'isDark')
   toggleDark()
   appStore.switchMode(isDark.value ? 'dark' : 'light')
 }
