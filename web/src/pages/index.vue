@@ -1,76 +1,73 @@
 <script setup lang="ts">
-import type { PickerColumn } from 'vant'
-import useAppStore from '@/stores/modules/app'
-import { languageColumns, locale } from '@/utils/i18n'
-
-const appStore = useAppStore()
-const checked = ref<boolean>(isDark.value)
-
-watch(
-  () => isDark.value,
-  (newMode) => {
-    checked.value = newMode
-  },
-  { immediate: true },
-)
-
-function toggle() {
-  console.log(isDark, 'isDark')
-  toggleDark()
-  appStore.switchMode(isDark.value ? 'dark' : 'light')
+const count = ref(0)
+const isLoading = ref(false)
+function onRefresh() {
+  setTimeout(() => {
+    showToast('刷新成功')
+    // isLoading.value = false
+    count.value++
+  }, 1000)
 }
-
-const { t } = useI18n()
-
-const showLanguagePicker = ref(false)
-const languageValues = ref<Array<string>>([locale.value])
-const language = computed(() => languageColumns.find(l => l.value === locale.value).text)
-
-function onLanguageConfirm(event: { selectedOptions: PickerColumn }) {
-  locale.value = event.selectedOptions[0].value as string
-  showLanguagePicker.value = false
-}
-
-const menuItems = computed(() => ([
-  { title: t('menus.mockGuide'), route: 'mock' },
-  { title: t('menus.echartsDemo'), route: 'charts' },
-  { title: t('menus.unocssExample'), route: 'unocss' },
-  { title: t('menus.persistPiniaState'), route: 'counter' },
-  { title: t('menus.keepAlive'), route: 'keepalive' },
-  { title: t('menus.404Demo'), route: 'unknown' },
-]))
 </script>
 
 <template>
-  <VanCellGroup :title="t('menus.basicSettings')" :border="false" :inset="true">
-    <VanCell center :title="t('menus.darkMode')">
-      <template #right-icon>
-        <VanSwitch v-model="checked" size="20px" aria-label="on/off Dark Mode" @click="toggle()" />
+  <div class="h-100vh w-100vw bg-#f7f7f7">
+    <van-pull-refresh
+      v-model="isLoading"
+      :head-height="80"
+      @refresh="onRefresh"
+    >
+      <!-- 下拉提示，通过 scale 实现一个缩放效果 -->
+      <template #pulling="props">
+        <!-- <img
+          class="doge"
+          src="https://fastly.jsdelivr.net/npm/@vant/assets/doge.png"
+          :style="{ transform: `scale(${props.distance / 80})` }"
+        > -->
+        <div class="test flex items-center justify-center">
+          <span class="icon" />
+          <p>释放立即加载{{ props.distance }}</p>
+        </div>
       </template>
-    </VanCell>
 
-    <VanCell
-      is-link
-      :title="t('menus.language')"
-      :value="language"
-      @click="showLanguagePicker = true"
-    />
-  </VanCellGroup>
+      <!-- 释放提示 -->
+      <template #loosing>
+        <div class="test flex items-center justify-center">
+          <span class="icon" />
+          <p>释放提示</p>
+        </div>
+      </template>
 
-  <VanCellGroup :title="t('menus.exampleComponents')" :border="false" :inset="true">
-    <template v-for="item in menuItems" :key="item.route">
-      <VanCell :title="item.title" :to="item.route" is-link />
-    </template>
-  </VanCellGroup>
-  <van-popup v-model:show="showLanguagePicker" position="bottom">
-    <van-picker
-      v-model="languageValues"
-      :columns="languageColumns"
-      @confirm="onLanguageConfirm"
-      @cancel="showLanguagePicker = false"
-    />
-  </van-popup>
+      <!-- 加载提示 -->
+      <template #loading>
+        <div h-100 flex flex-col items-center justify-center>
+          <span h-4rem w-4rem />
+          <p h-4rem text-3rem lh-4rem>
+            加载提示
+          </p>
+        </div>
+      </template>
+      <div class="h-100vh w-100vw">
+        <p>刷新次数: {{ count }}</p>
+      </div>
+    </van-pull-refresh>
+  </div>
 </template>
+
+<style lang="less" scoped>
+.doge {
+  width: 4rem;
+  height: 100%;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+.test {
+  .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+</style>
 
 <route lang="json">
 {

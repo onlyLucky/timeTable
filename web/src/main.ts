@@ -8,6 +8,9 @@ import '@/styles/app.less'
 import '@/styles/var.less'
 import { i18n } from '@/utils/i18n'
 
+// css 样式初始化
+import 'normalize.css/normalize.css'
+
 // Vant 桌面端适配
 import '@vant/touch-emulator'
 

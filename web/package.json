@@ -58,6 +58,7 @@
     "husky": "^9.1.6",
     "less": "^4.2.0",
     "mockjs": "^1.1.0",
+    "normalize.css": "^8.0.1",
     "postcss-mobile-forever": "^4.1.6",
     "rollup": "^4.22.0",
     "terser": "^5.33.0",
