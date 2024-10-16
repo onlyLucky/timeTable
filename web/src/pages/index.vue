@@ -4,7 +4,7 @@ const isLoading = ref(false)
 function onRefresh() {
   setTimeout(() => {
     showToast('刷新成功')
-    // isLoading.value = false
+    isLoading.value = false
     count.value++
   }, 1000)
 }
@@ -14,7 +14,7 @@ function onRefresh() {
   <div class="h-100vh w-100vw bg-#f7f7f7">
     <van-pull-refresh
       v-model="isLoading"
-      :head-height="80"
+      :head-height="60"
       @refresh="onRefresh"
     >
       <!-- 下拉提示，通过 scale 实现一个缩放效果 -->
@@ -24,23 +24,23 @@ function onRefresh() {
           src="https://fastly.jsdelivr.net/npm/@vant/assets/doge.png"
           :style="{ transform: `scale(${props.distance / 80})` }"
         > -->
-        <div class="test flex items-center justify-center">
-          <span class="icon" />
+        <div class="pullBox flex flex-col items-center">
+          <span class="icon" :style="{ height: `${props.distance || 0}px` }" />
           <p>释放立即加载{{ props.distance }}</p>
         </div>
       </template>
 
       <!-- 释放提示 -->
-      <template #loosing>
-        <div class="test flex items-center justify-center">
-          <span class="icon" />
-          <p>释放提示</p>
+      <template #loosing="props">
+        <div class="pullBox flex flex-col items-center bg-pink">
+          <span class="icon" :style="{ height: `${props.distance || 0}px` }" />
+          <p>释放提示{{ JSON.stringify(props) }}</p>
         </div>
       </template>
 
       <!-- 加载提示 -->
       <template #loading>
-        <div h-100 flex flex-col items-center justify-center>
+        <div class="pullBox flex flex-col items-center">
           <span h-4rem w-4rem />
           <p h-4rem text-3rem lh-4rem>
             加载提示
@@ -61,10 +61,13 @@ function onRefresh() {
   margin-top: 8px;
   border-radius: 4px;
 }
-.test {
+.pullBox {
   .icon {
     width: 2rem;
-    height: 2rem;
+    height: auto;
+    border-radius: 2rem;
+    border: 1px solid #999;
+    background-color: aqua;
   }
 }
 </style>
