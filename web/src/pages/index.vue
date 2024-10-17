@@ -63,9 +63,9 @@ function onRefresh() {
 }
 .pullBox {
   .icon {
-    width: 2rem;
+    width: 1rem;
     height: auto;
-    border-radius: 2rem;
+    border-radius: 1rem;
     border: 1px solid #999;
     background-color: aqua;
   }
