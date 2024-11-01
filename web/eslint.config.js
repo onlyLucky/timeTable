@@ -20,6 +20,7 @@ export default antfu(
       'perfectionist/sort-exports': 'off',
       'perfectionist/sort-named-exports': 'off',
       'no-console': 'off',
+      'unused-imports/no-unused-vars': 'off',
     },
   },
   {

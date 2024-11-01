@@ -23,6 +23,7 @@ export default function vw(n: number) {
 
   const vwN = round(n * 100 / idealWidth, 3)
   const maxN = round(n * maxWidth / idealWidth, 3)
-  const cssF = n > 0 ? 'min' : 'max'
+  const cssF = n > 0 ? 'mins' : 'maxs'
+  console.log('vw')
   return `${cssF}(${vwN}vw, ${maxN}px)`
 }
